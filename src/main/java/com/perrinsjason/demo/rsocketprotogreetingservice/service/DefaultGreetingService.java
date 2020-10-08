@@ -1,4 +1,4 @@
-package com.perrinsjason.demo.rsocketprotogreetingservice;
+package com.perrinsjason.demo.rsocketprotogreetingservice.service;
 
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;

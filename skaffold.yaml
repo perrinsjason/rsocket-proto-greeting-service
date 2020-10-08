@@ -6,8 +6,9 @@ build:
   artifacts:
   - image: perrinsjason/rsocket-proto-greeting-service
     jib:
-      project: com.perrinsjason:greeting-service
+      project: com.perrinsjason.demo:rsocket-proto-greeting-service
 deploy:
   kubectl:
     manifests:
-    - manifests/*
+    - manifests/greetings-gateway.yaml
+    - manifests/greetings-service-deployment.yaml

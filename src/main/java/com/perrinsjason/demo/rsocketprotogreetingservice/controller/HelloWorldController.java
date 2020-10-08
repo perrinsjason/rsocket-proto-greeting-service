@@ -16,7 +16,12 @@ public class HelloWorldController {
 
     @GetMapping("/hi")
     public String hi(){
-        return "Hi World! ";
+        return "Hi World!";
+    }
+
+    @GetMapping("/project")
+    public String project(){
+        return "rsocket-proto-greeting-service";
     }
 
     @GetMapping("")

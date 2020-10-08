@@ -1,7 +1,7 @@
 package com.perrinsjason.demo.rsocketprotogreetingservice.controller;
 
 
-import com.perrinsjason.demo.rsocketprotogreetingservice.DefaultGreetingService;
+import com.perrinsjason.demo.rsocketprotogreetingservice.service.DefaultGreetingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;

@@ -3,22 +3,22 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: greeting-service
-  name: greeting-service
+    app: rsocket-proto-greeting-service
+  name: rsocket-proto-greeting-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: greeting-service
+      app: rsocket-proto-greeting-service
   strategy: {}
   template:
     metadata:
       labels:
-        app: greeting-service
+        app: rsocket-proto-greeting-service
     spec:
       containers:
-        - image: perrinsjason/demo-greeting-service
-          name: demo-greeting-service
+        - image: perrinsjason/rsocket-proto-greeting-service
+          name: rsocket-proto-greeting-service
           resources: {}
           ports:
             - containerPort: 8085
@@ -32,11 +32,11 @@ kind: Service
 metadata:
   name: rest-greeting-service
   labels:
-    app: greeting-service
+    app: rsocket-proto-greeting-service
     service: rest-greeting-service
 spec:
   selector:
-    app: greeting-service
+    app: rsocket-proto-greeting-service
   ports:
     - port: 8085
       name: http
@@ -50,11 +50,11 @@ kind: Service
 metadata:
   name: rsocket-greeting-service
   labels:
-    app: greeting-service
+    app: rsocket-proto-greeting-service
     service: rsocket-greeting-service
 spec:
   selector:
-    app: greeting-service
+    app: rsocket-proto-greeting-service
   ports:
     - protocol: TCP
       port: 7075

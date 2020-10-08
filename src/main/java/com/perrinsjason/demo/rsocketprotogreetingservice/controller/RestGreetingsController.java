@@ -1,6 +1,6 @@
 package com.perrinsjason.demo.rsocketprotogreetingservice.controller;
 
-import com.perrinsjason.demo.rsocketprotogreetingservice.DefaultGreetingService;
+import com.perrinsjason.demo.rsocketprotogreetingservice.service.DefaultGreetingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
