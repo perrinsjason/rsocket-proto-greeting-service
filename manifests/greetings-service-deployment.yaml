@@ -1,0 +1,62 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: greeting-service
+  name: greeting-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greeting-service
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: greeting-service
+    spec:
+      containers:
+        - image: perrinsjason/demo-greeting-service
+          name: demo-greeting-service
+          resources: {}
+          ports:
+            - containerPort: 8085
+            - containerPort: 7075
+
+---
+# REST Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest-greeting-service
+  labels:
+    app: greeting-service
+    service: rest-greeting-service
+spec:
+  selector:
+    app: greeting-service
+  ports:
+    - port: 8085
+      name: http
+      #nodePort: 30000 # exposing to all local testing. Not required one ingress/balancer setup
+---
+
+# RSocket Service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: rsocket-greeting-service
+  labels:
+    app: greeting-service
+    service: rsocket-greeting-service
+spec:
+  selector:
+    app: greeting-service
+  ports:
+    - protocol: TCP
+      port: 7075
+      name: tcp
+      #nodePort: 30001 # exposing to all local testing. Not required one ingress/balancer setup

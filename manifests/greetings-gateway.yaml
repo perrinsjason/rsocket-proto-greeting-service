@@ -1,0 +1,47 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: greetings-gateway
+spec:
+  selector:
+    istio: ingressgateway # use istio default controller
+  servers:
+    - port:
+        number: 80
+        name: http
+        protocol: HTTP
+      hosts:
+        - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: rest-greetings-virtualservice
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - greetings-gateway
+  http:
+    - route:
+        - destination:
+            host: rest-greeting-service
+            port:
+              number: 8085
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: rsocket-greetings-virtualservice
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - greetings-gateway
+  tcp:
+    - route:
+        - destination:
+            host: rsocket-greeting-service
+            port:
+              number: 7075

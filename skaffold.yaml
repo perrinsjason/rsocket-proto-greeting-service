@@ -1,0 +1,13 @@
+apiVersion: skaffold/v2beta7
+kind: Config
+metadata:
+  name: rsocket-proto-greeting-service
+build:
+  artifacts:
+  - image: perrinsjason/rsocket-proto-greeting-service
+    jib:
+      project: com.perrinsjason:greeting-service
+deploy:
+  kubectl:
+    manifests:
+    - manifests/*
