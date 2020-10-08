@@ -2,6 +2,8 @@ package com.perrinsjason.demo.rsocketprotogreetingservice.controller;
 
 
 import com.perrinsjason.demo.rsocketprotogreetingservice.service.DefaultGreetingService;
+import com.proto.example.GreetingRequest;
+import com.proto.example.GreetingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
@@ -14,19 +16,14 @@ public class RSocketGreetingsController {
 
     private final DefaultGreetingService defaultGreetingService;
 
-    @MessageMapping("string")
-    public String StringGreeting(String name){
-        return defaultGreetingService.StringGreeting(name);
+    @MessageMapping("greeting")
+    public Mono<GreetingResponse> greeting(GreetingRequest request){
+            return defaultGreetingService.greeting(request,null);
     }
 
-    @MessageMapping("mono")
-    public Mono<String> MonoGreeting(String name) {
-        return defaultGreetingService.MonoGreeting(name);
-    }
-
-    @MessageMapping("flux")
-    public Flux<String> randomGreetingsGenerator(){
-        return defaultGreetingService.randomGreetingsGenerator();
+    @MessageMapping("random.greetings")
+    public Flux<GreetingResponse> randomGreetingsGenerator(){
+        return defaultGreetingService.randomGreetings(null,null);
     }
 
 }

@@ -1,6 +1,8 @@
 package com.perrinsjason.demo.rsocketprotogreetingservice.controller;
 
 import com.perrinsjason.demo.rsocketprotogreetingservice.service.DefaultGreetingService;
+import com.proto.example.GreetingRequest;
+import com.proto.example.GreetingResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,18 +18,14 @@ public class RestGreetingsController {
 
     private final DefaultGreetingService defaultGreetingService;
 
-    @GetMapping(path ="string/{name}")
-    public String StringGreeting(@PathVariable("name") String name){
-        return defaultGreetingService.StringGreeting(name);
+    @GetMapping(path ="{name}")
+    public Mono<String> StringGreeting(@PathVariable("name") String name){
+
+        return defaultGreetingService.greeting(GreetingRequest.newBuilder().setName(name).build(),null).map( response -> response.getName());
     }
 
-    @GetMapping(path ="mono/{name}")
-    public Mono<String> MonoGreeting(@PathVariable("name")String name) {
-        return defaultGreetingService.MonoGreeting(name);
-    }
-
-    @GetMapping(path = "flux")
+    @GetMapping(path = "random")
     public Flux<String> randomGreetingsGenerator(){
-        return defaultGreetingService.randomGreetingsGenerator();
+        return defaultGreetingService.randomGreetings(null,null).map(response -> response.getName());
     }
 }
