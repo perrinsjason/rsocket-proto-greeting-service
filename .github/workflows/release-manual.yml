@@ -53,7 +53,7 @@ jobs:
       - name: Publish container on GitHub Packages
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         run: |
+        run: |
               mvn compile jib:build \
               -Djib.to.image=https://maven.pkg.github.com/perrinsjason \
               -Djib.to.auth.username=perrinsjason \
