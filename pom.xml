@@ -40,7 +40,7 @@
         <dependency>
             <groupId>com.perrinsjason.demo</groupId>
             <artifactId>rsocket-maven-proto</artifactId>
-            <version>1.1</version>
+            <version>1.8</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
