@@ -25,4 +25,6 @@ jobs:
     - name: validate with Maven
       run: mvn -B validate --file pom.xml
     - name: compile with Maven
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: mvn -B compile --file pom.xml
