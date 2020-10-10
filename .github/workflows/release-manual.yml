@@ -51,14 +51,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: mvn deploy -Dregistry=https://maven.pkg.github.com/perrinsjason -Dtoken=GITHUB_TOKEN
-      - name: Publish container on GitHub Packages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-              mvn compile jib:build \
-              -Djib.to.image=https://maven.pkg.github.com/perrinsjason \
-              -Djib.to.auth.username=perrinsjason \
-              -Djib.to.auth.password=GITHUB_TOKEN
+
   docker:
     name: Publish - Docker Hub
     runs-on: ubuntu-latest
